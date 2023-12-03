@@ -74,7 +74,13 @@ class Flight implements Comparable<Flight> {
         } else if (f1.landingRequestTime > this.landingRequestTime) {
             return -1;
         } else {
-            return f1.flightNo < this.flightNo ? 1 : -1;
+            if (f1.flightNo < this.flightNo) {
+                return 1;
+            } else if (f1.flightNo > this.flightNo) {
+                return -1;
+            } else {
+                return 0;
+            }
         }
     }
 }
