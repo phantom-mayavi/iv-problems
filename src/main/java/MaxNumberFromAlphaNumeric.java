@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,6 +8,16 @@ public class MaxNumberFromAlphaNumeric {
     public static void main(String[] args) {
         MaxNumberFromAlphaNumeric myObj = new MaxNumberFromAlphaNumeric();
         System.out.println(myObj.maxNumber("100klh564abc365bg"));
+        System.out.println(myObj.maxNumber2("100klh564abc365bg"));
+    }
+
+    public int maxNumber2(String inputString) {
+        String[] numList = inputString.split("\\D+");
+
+        return Arrays.stream(numList).filter(s -> !s.isEmpty())
+                .mapToInt(Integer::parseInt)
+                .max()
+                .orElse(0);
     }
 
     public int maxNumber(String inputString) {
@@ -22,7 +33,6 @@ public class MaxNumberFromAlphaNumeric {
             }
         }
 
-        System.out.println(numbers);
         if (numbers.size() > 0) {
             Collections.sort(numbers);
             result = numbers.get(numbers.size() - 1);
